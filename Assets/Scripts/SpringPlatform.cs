@@ -6,9 +6,10 @@ public class SpringPlatform : MonoBehaviour
 {
     public float startTime;
     public float timeToBounce;
+    private Rigidbody rb;
     void Start()
     {
-        GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         timeToBounce = startTime;
     }
 
@@ -17,11 +18,12 @@ public class SpringPlatform : MonoBehaviour
         timeToBounce -= Time.deltaTime;
         if (timeToBounce <= 0)
         {
+            SpringSmthn();
             timeToBounce = startTime;
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void SpringSmthn()
     {
-        other.GetComponent<Rigidbody>().AddForce(0, 50, 0, ForceMode.Impulse);
+        rb.AddForce(0, 100, 0, ForceMode.Impulse);
     }
 }
